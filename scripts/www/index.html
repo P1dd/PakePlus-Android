@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>金阙·万亿人生 4.0</title>
+<style>
+*{box-sizing:border-box}
+:root{--gold:#dfbd76;--gold2:#a77b39;--bg:#100d0a;--panel:#211a13;--line:#594329;--muted:#a9987c;--green:#75c995;--red:#e47d78}
+body{margin:0;background:radial-gradient(ellipse at top,#302116,#100d0a 65%);color:#eee2c6;font-family:"Microsoft YaHei",sans-serif}
+button{background:linear-gradient(135deg,#705027,#342415);border:1px solid #a37c43;color:#f7dfaa;padding:9px 13px;border-radius:5px;cursor:pointer;font-size:12px}
+button:hover{filter:brightness(1.25)}
+button:disabled{opacity:.35;cursor:not-allowed}
+input,select{background:#110e0a;border:1px solid var(--line);color:#eee2c6;padding:9px;border-radius:5px;max-width:100%}
+header{padding:18px 4%;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:#17120d;gap:10px}
+.logo{font:29px Georgia;letter-spacing:8px;color:var(--gold)}
+.small{font-size:11px;color:#947c56;letter-spacing:2px}
+main{max-width:1500px;margin:auto;padding:22px 3%}
+.hero{height:230px;border:1px solid var(--line);border-radius:8px;position:relative;background:linear-gradient(90deg,#100d0bf2,#100d0b55),url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600") center/cover}
+.heroText{position:absolute;left:5%;top:17%}
+.hero h1{font:40px Georgia,"Microsoft YaHei";color:var(--gold);letter-spacing:4px}
+.hero p{color:#c3b394;line-height:1.9}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:15px 0}
+.stat,.panel{background:linear-gradient(140deg,#2b2117,#18130f);border:1px solid var(--line);border-radius:7px;padding:15px}
+.stat span{font-size:11px;color:var(--muted)}
+.stat strong{display:block;font:22px Georgia;color:var(--gold);margin-top:8px;overflow-wrap:anywhere}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0}
+.tabs button.active{background:#9a7136;color:#fff}
+.layout{display:grid;grid-template-columns:1.7fr .8fr;gap:14px}
+h2{font:20px Georgia,"Microsoft YaHei";font-weight:normal;color:var(--gold);margin-top:0}
+h3{font-size:15px;font-weight:normal;color:#f0d9a7;margin:4px 0 8px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.item{display:flex;gap:12px;background:#17130f;border:1px solid #4c3923;padding:13px;border-radius:6px;min-width:0}
+.item>div:last-child{min-width:0}
+.icon{font-size:29px;width:40px;flex-shrink:0}
+.item p{font-size:12px;color:var(--muted);line-height:1.7;margin:6px 0}
+.price{color:var(--gold);font-size:12px;line-height:1.8;margin:8px 0}
+.item button{font-size:11px;padding:7px 9px;margin:2px}
+.side{display:grid;gap:12px;align-content:start}
+.person{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid #483721}
+.face{font-size:27px}
+.person small{display:block;color:var(--muted);font-size:11px;margin-top:5px}
+.bar{height:5px;background:#080706;margin-top:6px;border-radius:5px}
+.bar i{display:block;height:100%;background:var(--gold);border-radius:5px}
+.log{font-size:12px;color:#bba98b;line-height:2;max-height:280px;overflow:auto}
+.note{font-size:12px;line-height:1.9;color:#c4b18d}
+.event{border:1px solid #76552c;padding:15px;border-radius:6px;margin-bottom:12px;background:#20170f}
+.event p{font-size:12px;line-height:1.8;color:#c4b18d}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;place-items:center;padding:15px}
+.modal.show{display:grid}
+.modalbox{width:min(550px,100%);max-height:85vh;overflow:auto;background:#211910;border:1px solid var(--gold2);padding:22px;border-radius:9px}
+.modalbox h2{margin-top:0}
+.modalbox p{font-size:13px;line-height:1.9;color:#c8b99e;white-space:pre-line}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.positive{color:var(--green)!important}
+.negative{color:var(--red)!important}
+table{width:100%;border-collapse:collapse;font-size:12px}
+td,th{padding:9px 5px;border-bottom:1px solid #483721;text-align:left}
+th{color:var(--gold);font-weight:normal}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.hero h1{font-size:27px}.hero{height:200px}}
+
+/* 皇家赌场沉浸式牌桌 */
+.casino-shell{grid-column:1/-1;background:radial-gradient(ellipse at 50% 0%,#4b351b 0,#1c160f 58%,#100d0a 100%);border:1px solid #9a733b;border-radius:10px;padding:20px;box-shadow:inset 0 0 45px #0008}
+.casino-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid #76552c;padding-bottom:14px;margin-bottom:16px}
+.casino-brand{font:26px Georgia,serif;color:#e8c77f;letter-spacing:4px}
+.casino-wallet{display:flex;gap:10px;flex-wrap:wrap}.casino-wallet span{background:#100d0a;border:1px solid #73552d;padding:8px 12px;border-radius:5px;color:#d9bd83;font-size:12px}
+.casino-lobby{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.casino-table-card{min-height:180px;border:1px solid #78592f;border-radius:8px;padding:18px;background:linear-gradient(145deg,#302316,#17120d);display:flex;flex-direction:column;justify-content:space-between;transition:.2s}
+.casino-table-card:hover{transform:translateY(-3px);border-color:#e0bd77;box-shadow:0 8px 24px #0008}
+.casino-table-card .emoji{font-size:36px}.casino-table-card p{font-size:12px;color:#bba783;line-height:1.8}
+.casino-room{border:1px solid #8b6938;border-radius:9px;padding:18px;background:radial-gradient(ellipse at center,#28513d,#10271d 70%);box-shadow:inset 0 0 35px #0009}
+.casino-felt{border:5px double #b18a4e;border-radius:48% / 18%;min-height:230px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:22px;background:radial-gradient(ellipse,#176342,#0b3827 70%);box-shadow:0 10px 25px #0008,inset 0 0 35px #0008}
+.casino-felt .big-result{font:48px Georgia;color:#f3d78f;text-shadow:0 2px 8px #000}.casino-felt .sub-result{color:#f1dfb7;font-size:13px;line-height:1.9}
+.casino-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:15px}
+.casino-control{background:#17120d;border:1px solid #70532d;border-radius:7px;padding:14px}.casino-control label{display:block;font-size:12px;color:#c8ad78;margin-bottom:7px}
+.casino-control input,.casino-control select{width:100%;max-width:none;margin-bottom:10px}
+.chip-row{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}.chip{width:42px;height:42px;border-radius:50%;padding:0;background:radial-gradient(circle,#d7bd82 0 48%,#6f4b1e 50% 62%,#d7bd82 64%);color:#24180b;font-size:10px;font-weight:bold;border:2px dashed #f0d99e}
+.casino-last{grid-column:1/-1;background:#17120d;border:1px solid #70532d;border-radius:7px;padding:14px;color:#d7c49d;font-size:13px;line-height:1.9}
+.casino-back{margin-bottom:12px}
+@media(max-width:700px){.casino-lobby,.casino-controls{grid-template-columns:1fr}.casino-felt{min-height:190px}.casino-brand{font-size:20px}}
+
+</style>
+</head>
+<body>
+<header>
+ <div>
+  <div class="logo">金 阙</div>
+  <div class="small">THE GOLDEN EMPIRE · VERSION 4.0</div>
+ </div>
+ <div style="text-align:right">
+  <div>第 <b id="day">1</b> 日</div>
+
+ </div>
+</header>
+
+<main>
+ <section class="hero">
+  <div class="heroText">
+   <div class="small">财富 · 权势 · 欲望 · 奢华</div>
+   <h1>醒掌天下财，醉卧金阙中</h1>
+   <p>你所拥有的不仅是财富，而是一个由你定义的世界。<br>让整个时代，记住你的名字。</p>
+  </div>
+ </section>
+
+ <div class="stats">
+  <div class="stat"><span>现金储备</span><strong id="cash">10亿</strong></div>
+  <div class="stat"><span>总资产</span><strong id="assets">10亿</strong></div>
+  <div class="stat"><span>每日净收益</span><strong id="profit">0</strong></div>
+  <div class="stat"><span>社会名望</span><strong id="fame">0</strong></div>
+  <div class="stat"><span>财富等级</span><strong id="rank">亿万富豪</strong></div>
+ </div>
+
+ <nav class="tabs" id="tabs">
+  <button class="active" data-tab="estate" onclick="show('estate',this)">府邸</button>
+  <button data-tab="luxury" onclick="show('luxury',this)">奢华生活</button>
+  <button data-tab="people" onclick="show('people',this)">伴侣与社交</button>
+  <button data-tab="night" onclick="show('night',this)">夜色金阙</button>
+  <button data-tab="business" onclick="show('business',this)">商业帝国</button>
+  <button data-tab="treasure" onclick="show('treasure',this)">珍宝收藏</button>
+  <button data-tab="stocks" onclick="show('stocks',this)">证券交易所</button>
+  <button data-tab="invest" onclick="show('invest',this)">商业投资</button>
+  <button data-tab="rank" onclick="show('rank',this)">世界富豪榜</button>
+  <button data-tab="casino" onclick="show('casino',this)">皇家赌场</button>
+ </nav>
+
+ <div class="layout">
+  <section class="panel">
+   <h2 id="heading">皇家府邸</h2>
+   <div id="content" class="grid"></div>
+  </section>
+  <aside class="side">
+   <section class="panel">
+    <h2>私人生活</h2>
+    <div id="peopleMini" class="note"></div>
+   </section>
+   <section class="panel">
+    <h2>今日行程</h2>
+    <div id="brief" class="note">今日暂无特殊安排。</div>
+    <br><button onclick="nextDay()">结束今日 →</button>
+   </section>
+   <section class="panel">
+    <h2>人生纪事</h2>
+    <div id="logs" class="log"></div>
+   </section>
+   <section class="panel">
+    <h2>人生管理</h2>
+    <div class="actions"><button onclick="resetGame()">重开人生</button></div>
+    <p class="note">本局进度仅保留在当前页面内存中。刷新或关闭页面后将重新开始。</p>
+   </section>
+  </aside>
+ </div>
+</main>
+
+<footer style="text-align:center;padding:25px;color:#695638;font-size:11px">
+ 金阙 4.0 · 无存档模式 · 虚构人生经营模拟器 · 所有角色均为成年虚构人物
+</footer>
+
+<div class="modal" id="modal">
+ <div class="modalbox">
+  <h2 id="mt"></h2>
+  <p id="mb"></p>
+  <div class="actions" id="ma"></div>
+ </div>
+</div>
+
+<script>
+"use strict";
+
+/* =========================
+   1. 基础数据与存档
+========================= */
+const base={
+ day:1,cash:1000000000,assets:0,fame:0,income:0,expense:0,
+ owned:[],business:[],women:[],logs:[],
+ stockQuotes:{},stockHoldings:{},
+ investments:[],marketRegime:"震荡市",marketDaysLeft:5,
+ hotSector:"人工智能",marketNews:"市场暂时没有重大消息。",
+ investigations:{},investigationAmounts:{},
+ charm:10,events:0,clubs:[]
+};
+
+function clone(obj){return JSON.parse(JSON.stringify(obj))}
+function number(v,def=0){return Number.isFinite(Number(v))?Number(v):def}
+
+function normalize(data){
+ let g={...clone(base),...(data||{})};
+ g.owned=Array.isArray(g.owned)?g.owned:[];
+ g.logs=Array.isArray(g.logs)?g.logs:[];
+ g.women=Array.isArray(g.women)?g.women:[];
+ g.investments=Array.isArray(g.investments)?g.investments:[];
+ g.stockQuotes=g.stockQuotes||{};
+ g.stockHoldings=g.stockHoldings||{};
+ g.investigations=g.investigations||{};
+ g.investigationAmounts=g.investigationAmounts||{};
+ g.cash=number(g.cash,base.cash);
+ g.assets=number(g.assets);
+ g.income=number(g.income);
+ g.expense=number(g.expense);
+ g.fame=number(g.fame);
+ g.day=Math.max(1,Math.floor(number(g.day,1)));
+ g.women=g.women.map(w=>({
+  ...w,
+  affinity:number(w.affinity,24),
+  intimacy:number(w.intimacy),
+  trust:number(w.trust,20),
+  jealousy:number(w.jealousy)
+ }));
+ return g;
+}
+
+let g=clone(base);
+
+let current="estate";
+let casinoTable="lobby";
+let casinoBetAmount=100000;
+let casinoExchangeAmount=1000000;
+let casinoLastResult=null;
+
+/* =========================
+   2. 通用工具
+========================= */
+const fmt=n=>{
+ n=number(n);
+ let abs=Math.abs(n);
+ let out=abs>=1e12?(abs/1e12).toFixed(2)+"万亿":
+         abs>=1e8?(abs/1e8).toFixed(2)+"亿":
+         abs>=1e4?(abs/1e4).toFixed(1)+"万":
+         Math.round(abs).toLocaleString("zh-CN");
+ return (n<0?"-":"")+out;
+};
+
+const pct=n=>(number(n)*100).toFixed(2)+"%";
+
+function record(text){
+ g.logs.unshift("第"+g.day+"日："+text);
+ g.logs=g.logs.slice(0,100);
+}
+
+function rankName(){
+ let total=g.cash+g.assets+stockValue()+investmentValue();
+ const levels=[
+  [0,"亿万富豪"],
+  [2000000000,"超级富豪"],
+  [10000000000,"商业巨擘"],
+  [50000000000,"豪门领袖"],
+  [100000000000,"世界富豪"],
+  [500000000000,"全球顶级财团"],
+  [1000000000000,"万亿帝王"],
+  [5000000000000,"世界首富候选"],
+  [10000000000000,"财富传奇"],
+  [50000000000000,"金融之神"]
+ ];
+ let result=levels[0][1];
+ levels.forEach(x=>{if(total>=x[0])result=x[1]});
+ return result;
+}
+
+function totalWorth(){
+ return g.cash+g.assets+stockValue()+investmentValue();
+}
+
+function modal(title,text,buttons){
+ document.getElementById("mt").textContent=title;
+ document.getElementById("mb").textContent=text;
+ let area=document.getElementById("ma");
+ area.innerHTML="";
+ (buttons||[["知道了",closeModal]]).forEach(item=>{
+  let b=document.createElement("button");
+  b.textContent=item[0];
+  b.onclick=item[1];
+  area.appendChild(b);
+ });
+ document.getElementById("modal").classList.add("show");
+}
+
+function closeModal(){
+ document.getElementById("modal").classList.remove("show");
+}
+
+function askNumber(title,defaultValue){
+ let v=prompt(title,defaultValue===undefined?"":String(defaultValue));
+ if(v===null)return null;
+ // 兼容用户输入 1,000,000、￥1000000 等常见格式
+ let cleaned=String(v).trim().replace(/[，,\s￥¥元]/g,"");
+ if(cleaned==="")return null;
+ let n=Number(cleaned);
+ return Number.isFinite(n)?n:null;
+}
+
+/* =========================
+   3. 资产目录
+========================= */
+const catalog={
+ estate:[
+  ["云顶皇家庄园","🏛️","私人泳池、宴会厅、花园与皇家主卧。",180000000,180000,120],
+  ["天际云端宫邸","🏙️","城市顶层复式宫殿。",85000000,85000,65],
+  ["蓝湾私人岛屿","🏝️","整座私人海岛与专属码头。",320000000,260000,220],
+  ["欧洲皇家古堡","🏰","百年古堡、酒窖、马场与玫瑰园。",260000000,210000,190],
+  ["私人宫殿扩建","👑","将现有主宅升级为超大型私人宫殿。",150000000,120000,180]
+ ],
+ luxury:[
+  ["湾流私人飞机","🛩️","私人洲际飞行。",150000000,350000,130],
+  ["曜金号超级游艇","🛥️","泳池、影院与派对甲板。",220000000,420000,180],
+  ["典藏超跑车库","🏎️","全球限量跑车收藏。",65000000,95000,75],
+  ["私人管家团队","🎩","管家、厨师、司机与礼宾服务。",12000000,30000,35],
+  ["鎏金私人会所","🥂","只接待受邀的贵宾与名流。",35000000,90000,80]
+ ],
+ business:[
+  ["星瀚科技集团","💻","人工智能与高端制造。",120000000,1800000,110],
+  ["远洋国际资本","📈","全球投资和资产管理。",200000000,3200000,160],
+  ["瑰丽酒店集团","🏨","全球豪华酒店业务。",90000000,1250000,90],
+  ["南法私人酒庄","🍇","葡萄园、酒窖和精品酒店。",75000000,850000,75],
+  ["环球商业银行","🏦","大型金融投资机构。",500000000,8500000,350]
+ ],
+ treasure:[
+  ["海洋之心蓝钻","💎","稀世蓝钻。",48000000,0,110],
+  ["大师传世名画","🖼️","私人艺术馆藏品。",68000000,0,145],
+  ["皇家古董座钟","🕰️","古老宫廷的精密艺术品。",22000000,0,65],
+  ["帝王翡翠摆件","🪷","顶级翡翠珍藏。",36000000,0,90]
+ ]
+};
+
+/* =========================
+   4. 股票市场
+========================= */
+const stockList=[
+ {id:"XH",name:"星瀚科技",sector:"人工智能",price:185000,vol:.075,drift:.018,dividend:.002,quality:85},
+ {id:"TL",name:"天龙能源",sector:"新能源",price:92000,vol:.045,drift:.012,dividend:.012,quality:75},
+ {id:"HY",name:"环球金融",sector:"金融",price:126000,vol:.035,drift:.008,dividend:.018,quality:88},
+ {id:"SW",name:"盛维医疗",sector:"生物医药",price:68000,vol:.095,drift:.016,dividend:.001,quality:68},
+ {id:"JL",name:"金陵消费",sector:"高端消费",price:53000,vol:.04,drift:.01,dividend:.015,quality:82},
+ {id:"HT",name:"华天半导体",sector:"芯片制造",price:245000,vol:.11,drift:.023,dividend:0,quality:78},
+ {id:"YL",name:"远洋物流",sector:"航运物流",price:41000,vol:.085,drift:.006,dividend:.008,quality:62},
+ {id:"DK",name:"帝科地产",sector:"房地产",price:76000,vol:.065,drift:-.004,dividend:.009,quality:48}
+];
+
+const sectorList=["人工智能","新能源","金融","生物医药","高端消费","芯片制造","航运物流","房地产"];
+
+stockList.forEach(s=>{
+ if(!g.stockQuotes[s.id]){
+  g.stockQuotes[s.id]={price:s.price,change:0,history:[s.price]};
+ }
+});
+
+function stockValue(){
+ return stockList.reduce((sum,s)=>{
+  let h=g.stockHoldings[s.id]||{shares:0};
+  return sum+h.shares*g.stockQuotes[s.id].price;
+ },0);
+}
+
+function stockCost(){
+ return Object.values(g.stockHoldings).reduce((sum,h)=>sum+number(h.cost),0);
+}
+
+function stockProfit(){
+ return stockValue()-stockCost();
+}
+
+function buyStock(id){
+ let s=stockList.find(x=>x.id===id);
+ let q=g.stockQuotes[id];
+ let shares=askNumber(s.name+" 当前股价："+fmt(q.price)+"\n请输入购买股数：",1);
+ if(shares===null||!Number.isInteger(shares)||shares<=0)return;
+
+ let total=shares*q.price;
+ let fee=total*.003;
+ if(total+fee>g.cash)return alert("现金不足，无法完成交易。");
+
+ g.cash-=total+fee;
+ let h=g.stockHoldings[id]||{shares:0,cost:0};
+ h.shares+=shares;
+ h.cost+=total+fee;
+ g.stockHoldings[id]=h;
+
+ record("买入"+s.name+" "+shares+"股，成交金额"+fmt(total)+"，手续费"+fmt(fee));
+ 
+ show("stocks");
+}
+
+function sellStock(id){
+ let s=stockList.find(x=>x.id===id);
+ let q=g.stockQuotes[id];
+ let h=g.stockHoldings[id]||{shares:0,cost:0};
+ if(h.shares<=0)return alert("你还没有持有这只股票。");
+
+ let shares=askNumber(s.name+" 当前股价："+fmt(q.price)+"\n持有："+h.shares+"股\n请输入卖出股数：",h.shares);
+ if(shares===null||!Number.isInteger(shares)||shares<=0||shares>h.shares)return;
+
+ let avgCost=h.cost/h.shares;
+ let gross=shares*q.price;
+ let fee=gross*.003;
+ let cost=avgCost*shares;
+ let profit=gross-fee-cost;
+
+ g.cash+=gross-fee;
+ h.shares-=shares;
+ h.cost=Math.max(0,h.cost-cost);
+
+ if(h.shares===0)delete g.stockHoldings[id];
+
+ record("卖出"+s.name+" "+shares+"股，"+(profit>=0?"盈利":"亏损")+fmt(Math.abs(profit)));
+ 
+ show("stocks");
+}
+
+function stockInfo(id){
+ let s=stockList.find(x=>x.id===id);
+ let q=g.stockQuotes[id];
+ let h=g.stockHoldings[id]||{shares:0,cost:0};
+ let history=q.history.slice(-10).map((v,i)=>"第"+(i+1)+"期："+fmt(v)).join("\n");
+ modal(s.name+" · "+s.id,
+  "所属行业："+s.sector+
+  "\n公司评级："+s.quality+"/100"+
+  "\n当前股价："+fmt(q.price)+
+  "\n今日涨跌："+pct(q.change)+
+  "\n日波动率："+pct(s.vol)+
+  "\n每日分红率："+pct(s.dividend)+
+  "\n持有股数："+h.shares+
+  "\n持仓成本："+fmt(h.cost)+
+  "\n\n最近行情：\n"+history);
+}
+
+/* =========================
+   5. 市场周期和行情更新
+========================= */
+const marketRegimes={
+ "牛市":{mood:.025,volatility:1.05,description:"资金持续流入，投资者信心强劲。"},
+ "熊市":{mood:-.022,volatility:1.25,description:"市场信心下降，投资者普遍谨慎。"},
+ "震荡市":{mood:0,volatility:.9,description:"市场缺乏明确方向，个股表现分化。"},
+ "金融危机":{mood:-.075,volatility:1.8,description:"市场发生严重动荡，流动性骤降。"}
+};
+
+function changeMarketRegime(){
+ let r=Math.random();
+ if(r<.10)g.marketRegime="金融危机";
+ else if(r<.35)g.marketRegime="熊市";
+ else if(r<.67)g.marketRegime="牛市";
+ else g.marketRegime="震荡市";
+
+ g.marketDaysLeft=5+Math.floor(Math.random()*8);
+ let info=marketRegimes[g.marketRegime];
+ g.marketNews="市场进入"+g.marketRegime+"："+info.description;
+ record(g.marketNews);
+}
+
+function marketClose(){
+ g.marketDaysLeft--;
+ if(g.marketDaysLeft<=0)changeMarketRegime();
+
+ let regime=marketRegimes[g.marketRegime]||marketRegimes["震荡市"];
+
+ if(Math.random()<.13){
+  g.hotSector=sectorList[Math.floor(Math.random()*sectorList.length)];
+  g.marketNews="行业风口："+g.hotSector+"板块出现资金关注。";
+  record(g.marketNews);
+ }
+
+ let badSector=null;
+ if(Math.random()<.07){
+  badSector=sectorList[Math.floor(Math.random()*sectorList.length)];
+  g.marketNews=badSector+"行业突发监管或经营风险消息。";
+  record(g.marketNews);
+ }
+
+ stockList.forEach(s=>{
+  let q=g.stockQuotes[s.id];
+  let sectorBonus=s.sector===g.hotSector?.035:0;
+  let sectorPenalty=s.sector===badSector?-.065:0;
+  let qualityBonus=(s.quality-60)*.00025;
+  let defensive=["HY","JL","TL"].includes(s.id);
+  let mood=regime.mood;
+
+  if(g.marketRegime==="熊市"&&defensive)mood*=.55;
+  if(g.marketRegime==="金融危机"&&defensive)mood*=.72;
+
+  let random=(Math.random()-.5)*2*s.vol*regime.volatility;
+  let change=mood+s.drift+qualityBonus+sectorBonus+sectorPenalty+random;
+
+  if(g.marketRegime==="金融危机"&&s.vol>.08)change-=.025;
+  change=Math.max(-.30,Math.min(.30,change));
+
+  q.price=Math.max(100,Math.round(q.price*(1+change)));
+  q.change=change;
+  q.history.push(q.price);
+  if(q.history.length>30)q.history.shift();
+
+  let h=g.stockHoldings[s.id];
+  if(h&&h.shares>0&&s.dividend>0){
+   let bonus=Math.floor(h.shares*q.price*s.dividend);
+   g.cash+=bonus;
+  }
+ });
+
+ if(Math.random()<.09){
+  let events=[
+   "央行释放流动性，市场信心有所恢复。",
+   "国际资本大规模撤离，市场承压。",
+   "大型科技企业发布突破性技术。",
+   "全球供应链出现异常，制造业股票震荡。",
+   "大型金融机构出现流动性问题。",
+   "政策扶持计划公布，部分行业迎来机会。"
+  ];
+  let event=events[Math.floor(Math.random()*events.length)];
+  g.marketNews=event;
+  record("市场快讯："+event);
+ }
+}
+
+/* =========================
+   6. 商业投资项目
+========================= */
+const investmentProjects=[
+ {name:"AI超级算力中心",icon:"🧠",desc:"号称获得大型科技集团订单，计划建设新一代算力中心。",min:10000000,max:500000000,days:3,success:.62,low:1.2,high:2.5,recovery:.2,risk:"高风险"},
+ {name:"海外能源矿场",icon:"⛏️",desc:"海外矿权投资，宣称发现大型稀有金属矿脉。",min:30000000,max:800000000,days:5,success:.42,low:1.8,high:5,recovery:.1,risk:"极高风险"},
+ {name:"私人医疗科技基金",icon:"🧬",desc:"投资新型医疗技术，研发成功可能带来巨大回报。",min:5000000,max:300000000,days:4,success:.48,low:1.5,high:4,recovery:.25,risk:"极高风险"},
+ {name:"城市核心商业综合体",icon:"🏢",desc:"收购核心地段物业，获取租金与资产升值收益。",min:20000000,max:1000000000,days:6,success:.78,low:1.08,high:1.65,recovery:.6,risk:"中等风险"},
+ {name:"神秘跨境资本项目",icon:"🕶️",desc:"神秘资本方邀请你参与封闭式融资，承诺短期巨额回报。",min:20000000,max:600000000,days:2,success:.25,low:3,high:8,recovery:0,risk:"极端风险"},
+ {name:"奢侈品品牌并购",icon:"💎",desc:"收购一个拥有成熟客户群的奢侈品品牌。",min:50000000,max:1200000000,days:5,success:.68,low:1.3,high:2.2,recovery:.35,risk:"高风险"},
+ {name:"新兴互联网平台",icon:"🚀",desc:"新平台正在快速扩张，可能成为下一个行业巨头。",min:3000000,max:150000000,days:3,success:.35,low:2,high:6,recovery:.05,risk:"极高风险"},
+ {name:"地方文旅开发项目",icon:"🏝️",desc:"投资旅游度假区，前期建设投入巨大，回报周期较长。",min:10000000,max:500000000,days:7,success:.55,low:1.3,high:3,recovery:.3,risk:"高风险"}
+];
+
+const projectTruth=[
+ {success:.58,recovery:.15,risk:"订单存在，但盈利能力被高估。"},
+ {success:.28,recovery:.05,risk:"矿权手续存在重大问题，项目开发可能受阻。"},
+ {success:.42,recovery:.10,risk:"技术仍处于研发阶段，距离商业化较远。"},
+ {success:.78,recovery:.55,risk:"资产质量较好，但建设周期可能超支。"},
+ {success:.12,recovery:0,risk:"疑似虚假融资，存在本金全部损失的风险。"},
+ {success:.65,recovery:.25,risk:"品牌有真实价值，但收购价格偏高。"},
+ {success:.22,recovery:.02,risk:"用户数据可能造假，现金流十分脆弱。"},
+ {success:.48,recovery:.20,risk:"项目具备开发价值，但回报周期较长。"}
+];
+
+function investmentValue(){
+ return g.investments.filter(p=>p.status==="进行中").reduce((s,p)=>s+p.principal,0);
+}
+
+function investigateProject(i){
+ let p=investmentProjects[i];
+ let amount=askNumber("项目："+p.name+"\n投资范围："+fmt(p.min)+" - "+fmt(p.max)+"\n请输入计划投资金额：",p.min);
+ if(amount===null||amount<p.min||amount>p.max)return alert("投资金额不符合项目要求。");
+ if(amount>g.cash)return alert("现金不足。");
+
+ let fee=Math.max(200000,Math.floor(amount*.008));
+ if(fee>g.cash)return alert("现金不足以支付尽调费用。");
+
+ if(!confirm("委托专业团队调查该项目？\n计划投入："+fmt(amount)+"\n调查费用："+fmt(fee)+"\n调查准确率约78%。"))return;
+
+ g.cash-=fee;
+ let truth=projectTruth[i];
+ let accurate=Math.random()<.78;
+ let report;
+
+ if(accurate){
+  let level=truth.success;
+  report="调查结果："+(level>=.65?"项目质量较好，存在一定投资价值。":level>=.4?"项目存在机会，但风险较高。":"项目风险极高，不建议轻易投入。")+
+  "\n调查发现："+truth.risk+
+  "\n估算成功概率："+Math.round(level*100)+"%";
+ }else{
+  report="调查结果：暂未发现重大问题。"+
+  "\n项目表面资料较为完整。"+
+  "\n但部分关键资料无法核实，本次调查可能存在误判。";
+ }
+
+ g.investigations[i]={accurate,success:truth.success,recovery:truth.recovery,report,day:g.day};
+ g.investigationAmounts[i]=amount;
+ record("对"+p.name+"进行了尽职调查，支付费用"+fmt(fee));
+ 
+
+ modal("商业尽职调查报告",report,[
+  ["暂不投资",closeModal],
+  ["根据报告投资",()=>{closeModal();investProject(i)}]
+ ]);
+}
+
+function investProject(i){
+ let p=investmentProjects[i];
+ let investigation=g.investigations[i];
+ let amount=investigation?g.investigationAmounts[i]:
+  askNumber(p.name+"\n请输入投资金额：",p.min);
+
+ if(amount===null||amount<p.min||amount>p.max)return alert("投资金额不符合项目要求。");
+ if(amount>g.cash)return alert("现金不足。");
+
+ if(!confirm("确定投资 "+p.name+"？\n本金："+fmt(amount)+"\n周期："+p.days+"天\n风险："+p.risk+"\n投资可能全部损失。"))return;
+
+ let truth=projectTruth[i];
+ g.cash-=amount;
+
+ g.investments.push({
+  name:p.name,principal:amount,daysLeft:p.days,
+  success:truth.success,low:p.low,high:p.high,
+  recovery:truth.recovery,status:"进行中",
+  investigated:!!investigation
+ });
+
+ delete g.investigations[i];
+ delete g.investigationAmounts[i];
+
+ record("投资"+p.name+"，投入本金"+fmt(amount)+(investigation?"（已尽调）":"（未尽调）"));
+ 
+ show("invest");
+}
+
+function settleInvestments(){
+ g.investments.forEach(p=>{
+  if(p.status!=="进行中")return;
+  p.daysLeft--;
+  if(p.daysLeft>0)return;
+
+  let win=Math.random()<p.success;
+  let payout=0;
+
+  if(win){
+   let multiplier=p.low+Math.random()*(p.high-p.low);
+   payout=Math.floor(p.principal*multiplier);
+   p.status="成功";
+  }else{
+   payout=Math.floor(p.principal*p.recovery*Math.random());
+   p.status=payout>0?"失败·部分回收":"失败·血本无归";
+  }
+
+  p.payout=payout;
+  p.profit=payout-p.principal;
+  g.cash+=payout;
+
+  record(p.name+"投资结算："+p.status+"，回款"+fmt(payout)+"，盈亏"+fmt(p.profit));
+ });
+}
+
+/* =========================
+   7. 伴侣与社交
+========================= */
+const women=[
+  ["沈知意","🌹","艺术策展人","温柔知性，喜欢古典艺术。","喜欢私人画廊、古典音乐与安静晚餐。"]
+];
+
+function meet(){
+  if(g.women.length)return alert("你已经拥有专属伴侣了。");
+  if(g.cash<1800000)return alert("现金不足。");
+  const w=women[0];
+  g.cash-=1800000;
+  g.women=[{name:w[0],icon:w[1],role:w[2],desc:w[3],preference:w[4],affinity:35,intimacy:8,trust:30,jealousy:0}];
+  g.fame+=8;
+  record("与沈知意正式相识，你们开始建立专属关系。");
+  show("people");
+}
+function date(){
+  const w=g.women[0]; if(!w)return alert("先与沈知意建立关系。");
+  if(g.cash<600000)return alert("现金不足。");
+  g.cash-=600000; w.affinity=Math.min(100,w.affinity+12); w.intimacy=Math.min(100,w.intimacy+7); w.trust=Math.min(100,w.trust+7); w.jealousy=Math.max(0,w.jealousy-3);
+  record("与沈知意共度私人时光，关系更加亲近。"); show("people");
+}
+function gift(){
+  const w=g.women[0]; if(!w)return alert("先与沈知意建立关系。");
+  if(g.cash<3500000)return alert("现金不足。");
+  g.cash-=3500000; w.affinity=Math.min(100,w.affinity+18); w.trust=Math.min(100,w.trust+9);
+  record("为沈知意准备了一份专属礼物。"); show("people");
+}
+function story(){
+  const w=g.women[0]; if(!w)return alert("先与沈知意建立关系。");
+  const scenes=[
+    "沈知意邀请你参观一场私人艺术展。你们在画作前聊到深夜，她第一次主动向你分享童年的梦想。",
+    "她为你准备了一场小型古典音乐会。曲终后，你们在露台并肩看夜景，关系悄然更进一步。",
+    "沈知意谈起她对独立与信任的理解。你认真倾听，她感受到这段关系里不只是财富与排场，还有尊重。",
+    "你们乘私人飞机前往海岛度假。烛光晚餐后，她主动牵起你的手，留下一个温柔而私密的夜晚。"
+  ];
+  w.affinity=Math.min(100,w.affinity+6); w.trust=Math.min(100,w.trust+5); w.intimacy=Math.min(100,w.intimacy+5);
+  record("与沈知意经历了一段专属回忆。"); modal("沈知意 · 专属故事",scenes[Math.floor(Math.random()*scenes.length)]); show("people");
+}
+function partnerChoice(action){
+  const w=g.women[0]; if(!w)return;
+  if(action==="trip"){
+    const cost=12000000; if(g.cash<cost)return alert("现金不足，需要1200万。");
+    g.cash-=cost; w.affinity=Math.min(100,w.affinity+14); w.intimacy=Math.min(100,w.intimacy+12); w.trust=Math.min(100,w.trust+10);
+    record("与沈知意开启私人海岛旅行。"); modal("海岛之约","你们在私人海岛度过了几天。远离喧嚣的时光，让彼此更加了解。亲密关系建立在双方自愿与尊重之上。");
+  } else if(action==="promise"){
+    w.trust=Math.min(100,w.trust+12); w.affinity=Math.min(100,w.affinity+5); w.jealousy=Math.max(0,w.jealousy-10);
+    record("你认真回应了沈知意对未来的期待。"); modal("彼此的承诺","沈知意看着你，轻声说：比起昂贵的礼物，她更在意你是否愿意认真对待这段关系。");
+  }
+  show("people");
+}
+
+/* =========================
+   8. 夜色金阙
+========================= */
+const nightActivities=[
+ ["私人香槟派对","🥂","邀请名流与朋友，在顶级会所举办夜宴。",8000000,30],
+ ["皇家假面舞会","🎭","华丽舞会、乐团演奏与神秘来宾。",15000000,55],
+ ["私人情侣套房","🕯️","与伴侣共度浪漫之夜，增进亲密和信任。",2500000,15],
+ ["深夜私人俱乐部","🌃","进入城市最神秘的私人俱乐部。",5000000,25],
+ ["慈善名流晚宴","🎻","提升社会名望，认识商业巨头。",20000000,100]
+];
+
+function nightEvent(i){
+  let x=nightActivities[i];
+  if(g.cash<x[3])return alert("现金不足。");
+  if(i===2&&!g.women.length)return alert("先与沈知意建立关系，再安排情侣套房。");
+  g.cash-=x[3]; g.fame+=x[4]; let extra=x[2];
+  if(i===2){let w=g.women[0];w.affinity=Math.min(100,w.affinity+10);w.intimacy=Math.min(100,w.intimacy+15);w.trust=Math.min(100,w.trust+8);extra="你与沈知意共度浪漫夜晚，关系进一步发展。";}
+  document.getElementById("brief").textContent=x[0]+"圆满结束。"+extra;
+  record("举办"+x[0]+"。"+extra); show("night");
+}
+
+/* =========================
+   9. 商业、资产交易
+========================= */
+function isOwned(key){return g.owned.includes(key)}
+
+function buyAsset(tab,i){
+ let x=catalog[tab][i];
+ let key=tab+":"+i;
+ if(isOwned(key))return;
+ if(g.cash<x[3])return alert("现金不足。");
+
+ g.cash-=x[3];
+ g.assets+=x[3];
+ g.fame+=x[5];
+ g.owned.push(key);
+ g.expense+=x[4];
+
+ if(tab==="business"){
+  g.income+=x[4];
+  g.expense-=Math.floor(x[4]*.1);
+ }
+ record("购入"+x[0]+"，财富版图扩大。");
+ show(tab);
+}
+
+function sellAsset(tab,i){
+ let x=catalog[tab][i];
+ let key=tab+":"+i;
+ if(!isOwned(key))return;
+
+ let value=Math.floor(x[3]*.8);
+ if(!confirm("出售"+x[0]+"？预计回收"+fmt(value)+"。"))return;
+
+ g.cash+=value;
+ g.assets-=x[3];
+ g.owned=g.owned.filter(k=>k!==key);
+ g.expense-=x[4];
+
+ if(tab==="business"){
+  g.income-=x[4];
+  g.expense+=Math.floor(x[4]*.1);
+ }
+ record("出售"+x[0]+"，回笼资金"+fmt(value));
+ show(tab);
+}
+
+function upgradeAsset(key){
+ let cost=30000000;
+ if(!isOwned(key))return;
+ if(g.cash<cost)return alert("升级需要3000万。");
+ g.cash-=cost;
+ g.assets+=cost;
+ g.fame+=15;
+ record("完成资产升级，投入"+fmt(cost)+"。");
+ show(current);
+}
+
+/* =========================
+   皇家赌场：沉浸式页面与牌桌交互
+========================= */
+function casinoSetBet(n){
+ casinoBetAmount=Math.max(10000,Math.floor(Number(n)||10000));
+ show("casino");
+}
+function casinoSetExchange(n){
+ casinoExchangeAmount=Math.max(1,Math.floor(Number(n)||1));
+}
+function exchangeChips(){
+ const n=Math.floor(Number(casinoExchangeAmount));
+ if(!Number.isFinite(n)||n<1)return casinoNotice("请输入有效兑换金额");
+ if(n>g.cash)return casinoNotice("现金余额不足，当前最多可兑换 "+fmt(g.cash));
+ g.cash-=n;g.casinoChips=(g.casinoChips||0)+n;
+ record("兑换赌场筹码 "+fmt(n));casinoNotice("兑换成功！已将 "+fmt(n)+" 现金兑换为赌场筹码。");
+}
+function cashOutChips(){
+ const n=Math.floor(Number(casinoExchangeAmount));
+ if(!Number.isFinite(n)||n<1||n>g.casinoChips)return casinoNotice("筹码数量无效，请检查当前筹码余额。");
+ g.casinoChips-=n;g.cash+=n;record("赌场筹码兑换现金 "+fmt(n));casinoNotice("兑换成功！已将 "+fmt(n)+" 筹码兑换为现金。");
+}
+function casinoNotice(message){
+ casinoLastResult={title:"贵宾服务台",detail:message,delta:0};show("casino");
+}
+function casinoEnter(table){casinoTable=table;casinoLastResult=null;show("casino");}
+function casinoLobby(){casinoTable="lobby";show("casino");}
+function casinoPlay(){
+ const bet=Math.floor(Number(casinoBetAmount));
+ if(!Number.isFinite(bet)||bet<10000)return casinoNotice("最低下注为 1 万筹码。");
+ if(bet>g.casinoChips)return casinoNotice("筹码不足，请先在贵宾服务台兑换筹码。");
+ const pick=document.getElementById("casinoPick")?.value||"red";
+ let title="",detail="",delta=0,visual="";
+ if(casinoTable==="roulette"){
+  const n=Math.floor(Math.random()*37),red=[1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
+  const color=n===0?"green":red.includes(n)?"red":"black";
+  const win=pick==="number"?false:pick===color;
+  delta=pick==="number"?-bet:win?bet:-bet;
+  title="皇家轮盘";visual=`${n}`;
+  detail=`轮盘最终停在 ${n} 号，${color==="red"?"红色":color==="black"?"黑色":"绿色零"}。${win?"恭喜命中！净赢得 "+fmt(delta)+" 筹码。":"本局未命中，损失 "+fmt(bet)+" 筹码。"}`;
+  if(pick==="number")detail="本桌数字直选暂未开放，请选择红色或黑色下注。";
+  if(pick==="number")return casinoNotice(detail);
+ }else if(casinoTable==="baccarat"){
+  const b=Math.floor(Math.random()*10),p=Math.floor(Math.random()*10),winner=b===p?"tie":b>p?"banker":"player";
+  delta=pick===winner?(pick==="tie"?bet*8:pick==="banker"?Math.floor(bet*.95):bet):-bet;
+  title="皇家百家乐";visual=`庄 ${b} · 闲 ${p}`;
+  detail=`庄家点数 ${b}，闲家点数 ${p}。${winner==="tie"?"和局":winner==="banker"?"庄家胜":"闲家胜"}。${pick===winner?"下注命中，净收益 "+fmt(delta)+"。":"下注未中，损失 "+fmt(bet)+"。"}`;
+ }else if(casinoTable==="sicbo"){
+  const dice=[1,2,3].map(()=>1+Math.floor(Math.random()*6)),sum=dice.reduce((a,b)=>a+b,0),triple=dice[0]===dice[1]&&dice[1]===dice[2];
+  const win=!triple&&((pick==="big"&&sum>=11&&sum<=17)||(pick==="small"&&sum>=4&&sum<=10)||(pick==="odd"&&sum%2===1)||(pick==="even"&&sum%2===0));
+  delta=win?bet:-bet;title="至尊骰宝";visual=dice.join("　⚄　");
+  detail=`三颗骰子为 ${dice.join("、")}，总点数 ${sum}${triple?"，出现围骰，本桌围骰通杀。":""}。${win?"恭喜下注命中，净赢 "+fmt(bet)+"。":"本局未中，损失 "+fmt(bet)+"。"}`;
+ }else if(casinoTable==="double"){
+  const result=Math.random()<.5?"heads":"tails",win=pick===result;delta=win?bet:-bet;title="命运翻倍";visual=result==="heads"?"正面":"反面";
+  detail=`硬币落下：${visual}。${win?"判断正确，赢得 "+fmt(bet)+" 筹码净收益。":"判断失误，损失 "+fmt(bet)+" 筹码。"}`;
+ }else{return;}
+ g.casinoChips+=delta;
+ casinoLastResult={title,detail,delta,visual};
+ record("赌场："+title+"，筹码变化"+(delta>=0?"+":"")+fmt(delta));
+ show("casino");
+}
+
+/* =========================
+   10. 每日结算与随机事件
+========================= */
+function nextDay(){
+ let net=g.income-g.expense;
+ g.cash+=net;
+
+ marketClose();
+ settleInvestments();
+
+ g.day++;
+ g.women.forEach(w=>{
+  if(w.jealousy>0)w.jealousy=Math.max(0,w.jealousy-2);
+ });
+
+ let events=[
+  ["拍卖会邀请","你收到一份私人拍卖会邀请函。","treasure"],
+  ["商业合作","一位投资人希望与你讨论合作。","business"],
+  ["豪门宴会","你受邀参加一场高级私人宴会。","night"],
+  ["平静的一天","今天一切顺利，产业持续经营。","estate"]
+ ];
+
+ let e=events[Math.floor(Math.random()*events.length)];
+ document.getElementById("brief").textContent=
+  "每日净现金变化："+fmt(net)+"。"+e[1];
+
+ record("每日结算完成，净收入"+fmt(net)+"。"+e[1]);
+
+ if(Math.random()<.12){
+  let bonus=Math.floor(Math.random()*10000000)+1000000;
+  g.cash+=bonus;
+  record("随机商业机会带来额外收入"+fmt(bonus)+"。");
+ }
+
+ if(Math.random()<.08){
+  let loss=Math.floor(Math.min(g.cash,Math.random()*12000000));
+  g.cash-=loss;
+  record("突发经营危机，额外支出"+fmt(loss)+"。");
+ }
+
+ 
+ show(current);
+}
+
+/* =========================
+   11. 页面渲染
+========================= */
+function refresh(){
+ document.getElementById("day").textContent=g.day;
+ document.getElementById("cash").textContent=fmt(g.cash);
+ document.getElementById("assets").textContent=fmt(totalWorth());
+ document.getElementById("profit").textContent=fmt(g.income-g.expense);
+ document.getElementById("fame").textContent=g.fame;
+ document.getElementById("rank").textContent=rankName();
+
+ document.getElementById("peopleMini").innerHTML=
+  g.women.length?g.women.slice(0,1).map(w=>
+   `<div class="person">
+    <div class="face">${w.icon}</div>
+    <div style="flex:1">
+     <b>${w.name}</b>
+     <small>好感 ${w.affinity} · 亲密 ${w.intimacy} · 信任 ${w.trust}</small>
+     <div class="bar"><i style="width:${Math.min(100,w.affinity)}%"></i></div>
+    </div>
+   </div>`
+  ).join(""):"尚未与沈知意建立关系。";
+
+ document.getElementById("logs").innerHTML=
+  g.logs.map(x=>"· "+escapeHTML(x)).join("<br>");
+}
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+function show(tab,btn){
+ current=tab;
+ document.querySelectorAll("#tabs button").forEach(b=>{
+  b.classList.toggle("active",b.dataset.tab===tab);
+ });
+
+ const titles={
+  estate:"皇家府邸",luxury:"奢华生活",people:"伴侣与社交",
+  night:"夜色金阙",business:"商业帝国",treasure:"珍宝收藏",
+  stocks:"证券交易所",invest:"高风险商业投资",rank:"世界富豪榜",casino:"金阙皇家赌场"
+ };
+ document.getElementById("heading").textContent=titles[tab]||"金阙";
+ let html="";
+
+ if(catalog[tab]){
+  catalog[tab].forEach((x,i)=>{
+   let key=tab+":"+i;
+   let owned=isOwned(key);
+   html+=`<div class="item">
+    <div class="icon">${x[1]}</div>
+    <div>
+     <h3>${x[0]} ${owned?"✓":""}</h3>
+     <p>${x[2]}</p>
+     <div class="price">价格：${fmt(x[3])}<br>
+      ${tab==="business"?"每日营业收入":"每日维护成本"}：${fmt(x[4])}
+     </div>
+     <div class="actions">
+      <button ${owned?"disabled":""} onclick="buyAsset('${tab}',${i})">${owned?"已拥有":"购入"}</button>
+      ${owned?`<button onclick="sellAsset('${tab}',${i})">出售</button><button onclick="upgradeAsset('${key}')">升级</button>`:""}
+     </div>
+    </div>
+   </div>`;
+  });
+ }
+
+  if(tab==="people"){
+   const w=g.women[0];
+   if(!w){
+    const p=women[0];
+    html+=`<div class="event" style="grid-column:1/-1"><h3>唯一专属伴侣 · 沈知意</h3><p>${p[2]} · ${p[3]}<br>她喜欢：${p[4]}</p><p>你们将从相识开始，逐步建立信任、亲密与共同回忆。关系不是购买项目，而是通过相处和尊重发展。</p><div class="price">初次私人邀约：180万</div><button onclick="meet()">邀请沈知意</button></div>`;
+   }else{
+    html+=`<div class="item" style="grid-column:1/-1"><div class="icon" style="font-size:42px">${w.icon}</div><div style="flex:1"><h3>${w.name} · 你的专属伴侣</h3><p>${w.role} · ${w.desc}</p><p>偏好：${w.preference||"艺术、音乐与旅行"}</p><div class="price">好感 ${w.affinity}/100 · 亲密 ${w.intimacy}/100 · 信任 ${w.trust}/100</div><p>好感<div class="bar"><i style="width:${w.affinity}%"></i></div></p><p>亲密<div class="bar"><i style="width:${w.intimacy}%"></i></div></p><p>信任<div class="bar"><i style="width:${w.trust}%"></i></div></p><div class="actions"><button onclick="date()">共度时光（60万）</button><button onclick="gift()">赠送礼物（350万）</button><button onclick="story()">专属剧情</button><button onclick="partnerChoice('trip')">私人旅行（1200万）</button><button onclick="partnerChoice('promise')">认真谈谈</button></div></div></div>`;
+   }
+   html+=`<div class="note" style="grid-column:1/-1">仅保留沈知意一位成年虚构伴侣。专属剧情、约会与亲密互动均以双方自愿、信任和尊重为前提。</div>`;
+  }
+
+ if(tab==="night"){
+  nightActivities.forEach((x,i)=>{
+   html+=`<div class="item">
+    <div class="icon">${x[1]}</div>
+    <div>
+     <h3>${x[0]}</h3>
+     <p>${x[2]}</p>
+     <div class="price">花费：${fmt(x[3])} · 名望增加：${x[4]}</div>
+     <button onclick="nightEvent(${i})">安排活动</button>
+    </div>
+   </div>`;
+  });
+  html+=`<div class="note" style="grid-column:1/-1">浪漫互动采用含蓄叙事，亲密情节以双方自愿为前提。</div>`;
+ }
+
+ if(tab==="stocks"){
+  html+=`<div class="event" style="grid-column:1/-1">
+   <h3>证券账户总览</h3>
+   <p>可用现金：${fmt(g.cash)}</p>
+   <p>持仓市值：${fmt(stockValue())}</p>
+   <p>持仓成本：${fmt(stockCost())}</p>
+   <p class="${stockProfit()>=0?"positive":"negative"}">持仓浮动盈亏：${fmt(stockProfit())}</p>
+   <p>账户总价值：${fmt(g.cash+stockValue())}</p>
+  </div>`;
+
+  let regime=marketRegimes[g.marketRegime]||marketRegimes["震荡市"];
+  html+=`<div class="event" style="grid-column:1/-1">
+   <h3>宏观市场环境：${g.marketRegime}</h3>
+   <p>${regime.description}</p>
+   <p>本轮周期剩余：${g.marketDaysLeft}天</p>
+   <p>当前热门行业：${g.hotSector}</p>
+   <p>市场快讯：${g.marketNews}</p>
+  </div>`;
+
+  stockList.forEach(s=>{
+   let q=g.stockQuotes[s.id];
+   let h=g.stockHoldings[s.id]||{shares:0,cost:0};
+   let pl=h.shares*q.price-h.cost;
+   html+=`<div class="item">
+    <div class="icon">📈</div>
+    <div style="flex:1">
+     <h3>${s.name} <span style="font-size:10px;color:#a78b5d">${s.id}</span></h3>
+     <p>${s.sector} · 公司评级 ${s.quality}/100</p>
+     <div class="price">当前股价：${fmt(q.price)}</div>
+     <p class="${q.change>=0?"positive":"negative"}">今日涨跌：${q.change>=0?"+":""}${pct(q.change)}</p>
+     <p>持有：${h.shares}股 · 持仓盈亏：<span class="${pl>=0?"positive":"negative"}">${fmt(pl)}</span></p>
+     <p>分红率：${pct(s.dividend)}</p>
+     <div class="actions">
+      <button onclick="buyStock('${s.id}')">买入</button>
+      <button onclick="sellStock('${s.id}')">卖出</button>
+      <button onclick="stockInfo('${s.id}')">公司资料</button>
+     </div>
+    </div>
+   </div>`;
+  });
+ }
+
+ if(tab==="invest"){
+  html+=`<div class="note" style="grid-column:1/-1">
+   金阙私人资本市场。项目可能获得高额收益，也可能出现违约、资金链断裂、虚假融资等风险。
+  </div>`;
+
+  investmentProjects.forEach((p,i)=>{
+   let investigated=g.investigations[i];
+   html+=`<div class="item">
+    <div class="icon">${p.icon}</div>
+    <div>
+     <h3>${p.name}</h3>
+     <p>${p.desc}</p>
+     <div class="price">
+      投资范围：${fmt(p.min)} - ${fmt(p.max)}<br>
+      周期：${p.days}天<br>
+      风险评级：${p.risk}<br>
+      可能回报：${p.low.toFixed(1)} - ${p.high.toFixed(1)}倍
+     </div>
+     ${investigated?'<p class="positive">已完成尽职调查</p>':""}
+     <div class="actions">
+      <button onclick="investigateProject(${i})">尽职调查</button>
+      <button onclick="investProject(${i})">直接投资</button>
+     </div>
+    </div>
+   </div>`;
+  });
+
+  let active=g.investments.filter(p=>p.status==="进行中");
+  let done=g.investments.filter(p=>p.status!=="进行中").slice(-10).reverse();
+
+  html+=`<div class="event" style="grid-column:1/-1">
+   <h3>正在运作的项目</h3>
+   ${active.length?active.map(p=>
+    `<p>${escapeHTML(p.name)} · 本金 ${fmt(p.principal)} · 剩余 ${p.daysLeft}天</p>`
+   ).join(""):"目前没有进行中的投资项目"}
+  </div>`;
+
+  html+=`<div class="event" style="grid-column:1/-1">
+   <h3>历史投资记录</h3>
+   ${done.length?done.map(p=>
+    `<p>${escapeHTML(p.name)} · ${escapeHTML(p.status)} · 回款 ${fmt(p.payout||0)} · 盈亏 ${fmt(p.profit||0)}</p>`
+   ).join(""):"暂无投资记录"}
+  </div>`;
+ }
+
+  if(tab==="casino"){
+   const chips=g.casinoChips||0;
+   html+=`<div class="casino-shell">
+    <div class="casino-top"><div><div class="casino-brand">♛ 金阙皇家赌场</div><div class="small">THE ROYAL CASINO · PRIVATE MEMBERS CLUB</div></div><div class="casino-wallet"><span>现金储备：${fmt(g.cash)}</span><span>贵宾筹码：${fmt(chips)}</span></div></div>`;
+   if(casinoTable==="lobby"){
+    html+=`<div class="event"><h3>欢迎来到金阙 · 皇家贵宾厅</h3><p>鎏金穹顶之下，私人荷官已为你备好牌桌。选择一间贵宾游戏室，亲自入座。所有筹码均为游戏内虚拟资产。</p><div class="casino-controls"><div class="casino-control"><label>现金兑换筹码（1:1）</label><input type="number" min="1" id="casinoExchangeInput" value="${Math.min(casinoExchangeAmount,Math.max(1,g.cash))}" oninput="casinoSetExchange(this.value)"><button onclick="exchangeChips()">兑换为筹码</button></div><div class="casino-control"><label>筹码兑换现金（1:1）</label><input type="number" min="1" max="${chips}" value="${Math.min(casinoExchangeAmount,Math.max(1,chips))}" oninput="casinoSetExchange(this.value)"><button onclick="cashOutChips()">兑换为现金</button></div></div></div>
+    <div class="casino-lobby">
+     <div class="casino-table-card"><div><div class="emoji">🎡</div><h3>皇家轮盘 · Roulette</h3><p>经典欧式轮盘，红黑对决。红/黑命中 1:1，绿色零让牌局瞬息逆转。</p></div><button onclick="casinoEnter('roulette')">进入轮盘厅 →</button></div>
+     <div class="casino-table-card"><div><div class="emoji">🃏</div><h3>皇家百家乐 · Baccarat</h3><p>庄、闲、和三方下注。庄赢扣除 5% 佣金，和局高赔率回报。</p></div><button onclick="casinoEnter('baccarat')">进入百家乐厅 →</button></div>
+     <div class="casino-table-card"><div><div class="emoji">🎲</div><h3>至尊骰宝 · Sic Bo</h3><p>三骰定输赢，可押大、小、单、双。围骰出现时本局通杀。</p></div><button onclick="casinoEnter('sicbo')">进入骰宝厅 →</button></div>
+     <div class="casino-table-card"><div><div class="emoji">👑</div><h3>命运翻倍 · Double</h3><p>一枚硬币，一次抉择。猜中正反面，赢得等额净收益；猜错则失去下注。</p></div><button onclick="casinoEnter('double')">进入翻倍厅 →</button></div>
+    </div>`;
+   }else{
+    const meta={roulette:["🎡","皇家轮盘","RED · BLACK · ZERO"],baccarat:["🃏","皇家百家乐","BANKER · PLAYER · TIE"],sicbo:["🎲","至尊骰宝","BIG · SMALL · ODD · EVEN"],double:["👑","命运翻倍","DOUBLE OR NOTHING"]}[casinoTable];
+    let options=casinoTable==="roulette"?'<option value="red">红色</option><option value="black">黑色</option>':casinoTable==="baccarat"?'<option value="banker">庄家</option><option value="player">闲家</option><option value="tie">和局（8倍）</option>':casinoTable==="sicbo"?'<option value="big">大（11-17）</option><option value="small">小（4-10）</option><option value="odd">单</option><option value="even">双</option>':'<option value="heads">正面</option><option value="tails">反面</option>';
+    html+=`<button class="casino-back" onclick="casinoLobby()">← 返回赌场大厅</button><div class="casino-room"><div class="casino-top"><div><div class="casino-brand">${meta[0]} ${meta[1]}</div><div class="small">${meta[2]}</div></div><div class="casino-wallet"><span>当前筹码：${fmt(chips)}</span><span>单局最低：1万</span></div></div>
+     <div class="casino-felt"><div class="small">THE ROYAL TABLE</div><div class="big-result">${casinoLastResult&&casinoLastResult.visual?escapeHTML(casinoLastResult.visual):"贵宾席恭候"}</div><div class="sub-result">${casinoLastResult?escapeHTML(casinoLastResult.detail):"请设置下注金额与投注选项，点击下方按钮开始游戏。"}</div></div>
+     <div class="casino-controls"><div class="casino-control"><label>选择下注金额</label><input id="casinoBetInput" type="number" min="10000" step="10000" value="${casinoBetAmount}" oninput="casinoBetAmount=Math.max(0,Number(this.value)||0)"><div class="chip-row"><button class="chip" onclick="casinoSetBet(10000)">1万</button><button class="chip" onclick="casinoSetBet(50000)">5万</button><button class="chip" onclick="casinoSetBet(100000)">10万</button><button class="chip" onclick="casinoSetBet(500000)">50万</button><button class="chip" onclick="casinoSetBet(1000000)">100万</button></div><div class="small">下注额不能超过当前筹码余额。</div></div><div class="casino-control"><label>投注选项</label><select id="casinoPick">${options}</select><p class="note">${casinoTable==="roulette"?"红黑赔率 1:1，落在绿色零则红黑均输。":casinoTable==="baccarat"?"庄赢净收益 0.95 倍，闲赢 1 倍，和局 8 倍。":casinoTable==="sicbo"?"大/小与单/双赔率 1:1，围骰通杀。":"猜中正反面赢得等额净收益，猜错损失下注额。"}</p><button style="width:100%;padding:13px;font-size:14px" onclick="casinoPlay()">确认下注 · 开始游戏</button></div></div>
+    </div>`;
+   }
+   if(casinoLastResult&&casinoLastResult.title){html+=`<div class="casino-last"><b>${escapeHTML(casinoLastResult.title)}</b><br>${escapeHTML(casinoLastResult.detail)}${casinoLastResult.delta?`<div class="${casinoLastResult.delta>0?"positive":"negative"}">本局筹码变化：${casinoLastResult.delta>0?"+":""}${fmt(casinoLastResult.delta)}</div>`:""}</div>`;}
+   html+=`<div class="note" style="margin-top:12px">金阙皇家赌场 · 仅供虚构人生模拟体验，不涉及真实货币或现实赌博。</div></div>`;
+  }
+
+ if(tab==="rank"){
+  let fake=[
+   ["全球科技巨头",8000000000000],
+   ["国际金融家族",5500000000000],
+   ["能源帝国掌门人",2800000000000],
+   ["欧洲古老财团",1600000000000],
+   ["东方地产集团",900000000000]
+  ];
+  fake.push(["你",totalWorth()]);
+  fake.sort((a,b)=>b[1]-a[1]);
+
+  html+=`<div class="event" style="grid-column:1/-1">
+   <h3>你的财富档案</h3>
+   <p>总身家：${fmt(totalWorth())}</p>
+   <p>财富等级：${rankName()}</p>
+   <p>社会名望：${g.fame}</p>
+   <p>股票持仓：${fmt(stockValue())}</p>
+   <p>未结算投资：${fmt(investmentValue())}</p>
+  </div>`;
+
+  fake.forEach((x,i)=>{
+   html+=`<div class="item">
+    <div class="icon">${i+1}</div>
+    <div><h3>${x[0]}</h3><p>估算身家：${fmt(x[1])}</p></div>
+   </div>`;
+  });
+ }
+
+ document.getElementById("content").innerHTML=html;
+ refresh();
+}
+
+/* =========================
+   12. 重开人生（无存档模式）
+========================= */
+function resetGame(){
+ casinoTable="lobby";casinoBetAmount=100000;casinoExchangeAmount=1000000;casinoLastResult=null;
+  if(!confirm("确定彻底重开人生？现金、资产、股票、投资、关系、赌场筹码和人生纪事都会清零，无法恢复。"))return;
+  g=clone(base);
+  stockList.forEach(s=>{g.stockQuotes[s.id]={price:s.price,change:0,history:[s.price]};});
+  current="estate";
+  closeModal();
+  document.getElementById("brief").textContent="今日暂无特殊安排。";
+  record("你重新开启了金阙人生。所有数据已重置。");
+  show("estate");
+}
+
+/* =========================
+   13. 启动
+========================= */
+stockList.forEach(s=>{g.stockQuotes[s.id]={price:s.price,change:0,history:[s.price]};});
+record("你继承了一笔巨额财富，金阙人生正式启幕。");
+show("estate");
+
+</script>
+</body>
+</html>
